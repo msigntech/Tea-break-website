@@ -168,25 +168,54 @@ nav {
 /* --- FOOTER --- */
 footer { background: #000; color: #888; text-align: center; padding: 2rem; margin-top: auto; border-top: 1px solid #333; }
 
-/* --- MOBILE RESPONSIVE --- */
+/* --- MOBILE RESPONSIVE FIX (Replace the bottom section) --- */
 @media (max-width: 768px) {
-    .hamburger { display: block; }
     
+    /* 1. Show the Hamburger Icon */
+    .hamburger { 
+        display: block; 
+        z-index: 2001; /* Stays on top of everything */
+    }
+
+    /* 2. Hide the Navigation Links by default */
     .nav-links {
-        display: none;
+        display: none; /* Hidden until clicked */
         position: absolute;
-        top: 100%;
+        top: 100%; /* Pushes it exactly below the navbar */
         left: 0;
         width: 100%;
-        background-color: #000;
-        flex-direction: column;
-        padding: 20px 0;
-        border-bottom: 2px solid var(--primary-color);
-        box-shadow: 0 10px 10px rgba(0,0,0,0.5);
+        height: auto;
+        background-color: #000000; /* Solid Black Background */
+        flex-direction: column; /* Stack items vertically */
+        align-items: center;
+        padding: 30px 0; /* Add space inside the black box */
+        border-top: 1px solid #333;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.8); /* Shadow to make it pop */
+        z-index: 1999; /* Sit on top of images */
     }
-    .nav-links.active { display: flex; }
-    .nav-links li { margin: 15px 0; }
 
-    .hero h1 { font-size: 2.5rem; }
+    /* 3. The class JavaScript adds to SHOW the menu */
+    .nav-links.active { 
+        display: flex !important; /* Force it to show */
+    }
+
+    /* 4. Style the Links inside the mobile menu */
+    .nav-links li { 
+        margin: 15px 0; /* Space between text */
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem; /* Make text bigger on phone */
+        display: block;
+        padding: 10px;
+    }
+
+    /* Adjust Hero Text Size for Mobile */
+    .hero h1 { font-size: 2.2rem; }
+    
+    /* Adjust About Grid to stack */
     .about-grid { grid-template-columns: 1fr; }
 }
+
