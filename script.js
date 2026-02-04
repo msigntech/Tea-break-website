@@ -4,25 +4,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
 
-    if(hamburger) {
+    if(hamburger && navLinks) {
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
     }
 
-    // 2. Scroll Animation Logic (Intersection Observer)
-    const observerOptions = {
-        threshold: 0.1 // Trigger when 10% of item is visible
-    };
-
+    // 2. Scroll Animation Logic
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('show');
+                entry.target.classList.add('show'); // Adds CSS class to animate
             }
         });
-    }, observerOptions);
+    });
 
+    // Select all elements with the 'hidden' class
     const hiddenElements = document.querySelectorAll('.hidden');
     hiddenElements.forEach((el) => observer.observe(el));
 });
